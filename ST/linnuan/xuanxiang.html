@@ -489,8 +489,11 @@
             // 你的聊天记录字符串
           var message = chat_message.message;
 
-          // 使用 matchAll 获取所有匹配项，转化为数组
-          var matches = Array.from(message.matchAll(/<options>([\s\S]*?)<\/options>/g));
+          // 正则解析：(?:(?!<options>)[\s\S]) 保证了在匹配内容时，绝对不会跨越（包含）新的 <options> 标签
+          const regex = /<options>((?:(?!<options>)[\s\S])*?)<\/options>/g;
+
+          // 转成数组
+          const matches = [...message.matchAll(regex)];
 
           // 如果有匹配结果，取最后一个的捕获组 [1]
           var optionsContent = matches.length > 0 ? matches[matches.length - 1][1] : '';
