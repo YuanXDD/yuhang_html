@@ -485,7 +485,16 @@
 
           var chat_message = getChatMessages(getCurrentMessageId())[0];
           var match = chat_message.message.match(/[\s\S]*<options>([\s\S]*?)<\/options>/);
-          createOptions(match ? match[1] : '');
+
+            // 你的聊天记录字符串
+          var message = chat_message.message;
+
+          // 使用 matchAll 获取所有匹配项，转化为数组
+          var matches = Array.from(message.matchAll(/<options>([\s\S]*?)<\/options>/g));
+
+          // 如果有匹配结果，取最后一个的捕获组 [1]
+          var optionsContent = matches.length > 0 ? matches[matches.length - 1][1] : '';
+          createOptions(matches.length > 0 ? optionsContent : '');
         } catch (error) {
           console.error('行动选项渲染失败:', error);
           document.getElementById('optionsGrid').innerHTML =
