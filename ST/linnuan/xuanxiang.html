@@ -483,10 +483,8 @@
           loadCollapse();
           loadMode();
 
-          console.error('Started:');
           var chat_message = getChatMessages(getCurrentMessageId())[0];
           var match = chat_message.message.match(/[\s\S]*<options>([\s\S]*?)<\/options>/);
-          console.error('Match:', match);
           createObptions(match ? match[1] : '');
         } catch (error) {
           console.error('行动选项渲染失败:', error);
