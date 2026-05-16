@@ -485,7 +485,8 @@
 
           var chat_message = getChatMessages(getCurrentMessageId())[0];
           var match = chat_message.message.matchAll(/<options>([\s\S]*?)<\/options>/g);
-          createOptions(match ? match[match.length - 1][1] : '');
+          console.error('Match:', match);
+          createObptions(match.length ? match[match.length - 1][1] : '');
         } catch (error) {
           console.error('行动选项渲染失败:', error);
           document.getElementById('optionsGrid').innerHTML =
