@@ -449,7 +449,7 @@ const o = Vue,
                       (a.title = "展開 PiP 保活"));
                     const o = t.querySelector("video");
                     ((o.src =
-                      "https://bqb.aguacloud.uk/Video%20Project%207.mp4"),
+                      "https://bqb.aguacloud.uk/Video%20Project%207.mp4",'mediaSession'in navigator&&(navigator.mediaSession.metadata=new MediaMetadata({title:'歌曲串烧',artist:'播客'}))),
                       t
                         .querySelector(".pip-close")
                         .addEventListener("click", () => Q()),
